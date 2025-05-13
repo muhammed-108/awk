@@ -1,0 +1,26 @@
+Step 1 Input field separator (FS).
+Print the eight groups of IPv6 addresses separately. Method 1:
+[root@openEuler ~]# ifconfig | awk '/inet6/{print $2}' > ifconfig3.txt
+[root@openEuler ~]# cat ifconfig3.txt
+fe80::f816:3eff:fe5d:b5cb
+::1
+[root@openEuler ~]# awk -F: '{print $1,$2,$3,$4,$5,$6,$7,$8}' ifconfig3.txt
+fe80 f816 3eff fe5d b5cb
+ 1
+[root@openEuler ~]#
+Method 2:
+[root@openEuler ~]# awk 'BEGIN{FS=":"};{print $1,$2,$3,$4,$5,$6,$7,$8}' ifconfig3.txt
+fe80 f816 3eff fe5d b5cb
+ 1
+[root@openEuler ~]#
+Step 2 Output field separator (OFS).
+Print the eight groups of IPv6 addresses that are separated by vertical bars (|). Method 1:
+[root@openEuler ~]# awk -F: '{print $1"|"$2"|"$3"|"$4"|"$5"|"$6"|"$7"|"$8}' ifconfig3.txt
+fe80||f816|3eff|fe5d|b5cb||
+||1|||||
+[root@openEuler ~]#
+Method 2:
+[root@openEuler ~]# awk -F: 'BEGIN{OFS="|"};{print $1,$2,$3,$4,$5,$6,$7,$8}' ifconfig3.txt
+fe80||f816|3eff|fe5d|b5cb||
+||1|||||
+[root@openEuler ~]#
