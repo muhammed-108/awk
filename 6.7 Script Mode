@@ -1,0 +1,15 @@
+Step 1 Create a script.
+Create an AWK script.
+[root@openEuler ~]# vim ifconfig3.sh
+[root@openEuler ~]# cat ifconfig3.sh
+#!/bin/awk -f
+BEGIN{for(i=1;i<20;i++){printf "*"};printf "\n"};NR==2{print $2};END{i=1;while(i<20){printf
+"#";i++};printf "\n"}
+[root@openEuler ~]#
+Step 2 Use the script.
+Use the AWK script.
+[root@openEuler ~]# ifconfig | awk -f ifconfig3.sh
+*******************
+192.168.0.22
+###################
+[root@openEuler ~]#
