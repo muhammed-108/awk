@@ -1,0 +1,17 @@
+Step 1 Line number judgment.
+Print the first two lines of the NIC information.
+[root@openEuler ~]# ifconfig | awk 'NR<=2{print $0}'
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500
+ inet 192.168.0.22 netmask 255.255.255.0 broadcast 192.168.0.255
+[root@openEuler ~]#
+Step 2 Logical judgment.
+Print the second column of line 2 or line 11.
+[root@openEuler ~]# ifconfig | awk 'NR==2 || NR==11 {print $2}'
+192.168.0.22
+127.0.0.1
+[root@openEuler ~]#
+Step 3 Content judgment.
+Print the second column of the first two lines that contain "192".
+[root@openEuler ~]# ifconfig | awk 'NR<=2 && $0 ~ /192/{print $2}'
+192.168.0.22
+[root@openEuler ~]#
