@@ -1,0 +1,19 @@
+Step 1 print
+Output customized IPv4 address information.
+[root@openEuler ~]# ifconfig | awk 'NR==2{print $0}' > ifconfig3.txt
+[root@openEuler ~]# cat ifconfig3.txt
+ inet 192.168.0.22 netmask 255.255.255.0 broadcast 192.168.0.255
+[root@openEuler ~]# awk '{print "ip:"$2,"netmask:"$4,"broadcast:"$6}' ifconfig3.txt
+ip:192.168.0.22 netmask:255.255.255.0 broadcast:192.168.0.255
+[root@openEuler ~]#
+Step 2 printf
+Output customized IPv4 address information.
+[root@openEuler ~]# ifconfig | awk 'NR==2;NR==11{print $0}' > ifconfig3.txt
+[root@openEuler ~]# cat ifconfig3.txt
+ inet 192.168.0.22 netmask 255.255.255.0 broadcast 192.168.0.255
+ inet 127.0.0.1 netmask 255.0.0.0
+[root@openEuler ~]# awk '{printf "%-5s%-20s%-10s%-20s%-10s%-20s\n",$1,$2,$3,$4,$5,$6}'
+ifconfig3.txt
+inet 192.168.0.22 netmask 255.255.255.0 broadcast 192.168.0.255
+inet 127.0.0.1 netmask 255.0.0.0
+[root@openEuler ~]#
