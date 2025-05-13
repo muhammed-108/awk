@@ -1,0 +1,15 @@
+Step 1 Condition statements.
+Print the IPv4 address in the NIC information.
+[root@openEuler ~]# ifconfig | awk '{if($1=="inet"){print $2}}'
+192.168.0.22
+127.0.0.1
+[root@openEuler ~]#
+Step 2 Loop statements.
+Add 20 asterisks (*) before the second column of the second line and 20 number signs
+(#) after the second column.
+[root@openEuler ~]# ifconfig | awk 'BEGIN{for(i=1;i<20;i++){printf "*"};printf "\n"};NR==2{print
+$2};END{i=1;while(i<20){printf "#";i++};printf "\n"}'
+*******************
+192.168.0.22
+###################
+[root@openEuler ~]#
