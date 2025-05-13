@@ -1,0 +1,16 @@
+Step 1 Input record separator (RS).
+Print the IPv4 address by line.
+[root@openEuler ~]# ifconfig | awk 'NR==2{print $2}' > ifconfig3.txt
+[root@openEuler ~]# cat ifconfig3.txt
+192.168.0.22
+[root@openEuler ~]# awk 'BEGIN{RS="."}{print $0}' ifconfig3.txt
+192
+168
+0
+22
+[root@openEuler ~]#
+Step 2 Output record separator (ORS).
+Set the ORS to a space.
+[root@openEuler ~]# awk 'BEGIN{RS=".";ORS=" "};{print $0}' ifconfig3.txt
+192 168 0 22
+[root@openEuler ~]#
