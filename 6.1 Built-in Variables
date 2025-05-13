@@ -1,0 +1,33 @@
+Step 1 Current records.
+Print the lines that contain "inet" in the NIC information:
+[root@openEuler ~]# ifconfig | awk '/inet/{print $0}'
+ inet 192.168.0.22 netmask 255.255.255.0 broadcast 192.168.0.255
+ inet6 fe80::f816:3eff:fe5d:b5cb prefixlen 64 scopeid 0x20<link>
+ inet 127.0.0.1 netmask 255.0.0.0
+ inet6 ::1 prefixlen 128 scopeid 0x10<host>
+[root@openEuler ~]#
+Step 2 Record fields.
+Print the IP address and subnet mask in the NIC information.
+[root@openEuler ~]# ifconfig | awk '/inet/{print $2,$4}'
+192.168.0.22 255.255.255.0
+fe80::f816:3eff:fe5d:b5cb 64
+127.0.0.1 255.0.0.0
+::1 128
+[root@openEuler ~]#
+Step 3 The number of record fields.
+Print the number of columns of the IPv6 address in the NIC information.
+[root@openEuler ~]# ifconfig | awk '/inet6/{print NF}'
+6
+6
+[root@openEuler ~]#
+Step 4 Last column.
+Print the IPv4 broadcast address in the NIC information.
+[root@openEuler ~]# ifconfig | awk '/inet /{print $NF}'
+192.168.0.255
+255.0.0.0
+[root@openEuler ~]#
+Step 5 Line number.
+Print the last column of the second line.
+[root@openEuler ~]# ifconfig | awk 'NR==2{print $NF}'
+192.168.0.255
+[root@openEuler ~]#
